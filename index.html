@@ -56,7 +56,7 @@
   .display { font-family: 'Fraunces', serif; font-weight: 300; }
 
   /* ——— Navigation ——— */
-  nav {
+  nav#nav {
     position: fixed;
     top: 0; left: 0; right: 0;
     padding: 18px 48px;
@@ -69,7 +69,7 @@
     transition: border-color 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease;
   }
 
-  nav.scrolled {
+  nav#nav.scrolled {
     border-bottom-color: var(--line);
     padding: 12px 48px;
     box-shadow: 0 4px 20px rgba(42, 38, 32, 0.05);
@@ -93,7 +93,7 @@
     transition: transform 0.4s ease, width 0.4s ease, height 0.4s ease;
   }
 
-  nav.scrolled .logo-circle { width: 46px; height: 46px; }
+  nav#nav.scrolled .logo-circle { width: 46px; height: 46px; }
 
   .logo-circle img {
     width: 100%;
@@ -852,17 +852,22 @@
   }
 
   /* ——— Mobile bottom nav bar ——— */
-  .bottom-nav {
+  /* Using nav.bottom-nav to be more specific than bare `nav` selector */
+  nav.bottom-nav {
     display: none;
     position: fixed;
+    top: auto;
     bottom: 0;
     left: 0;
     right: 0;
     z-index: 99;
     background: var(--white);
     border-top: 1px solid var(--line);
+    border-bottom: none;
     box-shadow: 0 -4px 20px rgba(42, 38, 32, 0.06);
     padding: 8px 4px calc(8px + env(safe-area-inset-bottom));
+    justify-content: center;
+    align-items: stretch;
   }
 
   .bottom-nav-inner {
@@ -923,8 +928,8 @@
 
   /* ——— Responsive ——— */
   @media (max-width: 960px) {
-    nav { padding: 14px 20px; }
-    nav.scrolled { padding: 10px 20px; }
+    nav#nav { padding: 14px 20px; }
+    nav#nav.scrolled { padding: 10px 20px; }
     .nav-links { display: none; }
     .logo-circle { width: 46px; height: 46px; }
     .logo-text { font-size: 15px; }
@@ -957,7 +962,7 @@
     .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
 
     /* Show mobile bottom nav */
-    .bottom-nav { display: block; }
+    nav.bottom-nav { display: flex; }
     /* Extra padding so the footer content clears the fixed bottom bar */
     footer { padding-bottom: 100px; }
   }
