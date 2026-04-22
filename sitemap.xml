@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://poppyandhawthorn.co/</loc>
+    <lastmod>2026-04-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://poppyandhawthorn.co/assets/hero.jpg</image:loc>
+      <image:title>Poppy &amp; Hawthorn charcuterie cart</image:title>
+      <image:caption>The Poppy &amp; Hawthorn charcuterie cart set up for a San Diego event</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://poppyandhawthorn.co/assets/about.jpg</image:loc>
+      <image:title>Poppy &amp; Hawthorn Charcuterie Cart signage</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://poppyandhawthorn.co/assets/gallery-1.jpg</image:loc>
+      <image:title>Poppy &amp; Hawthorn business cards at a grazing event</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://poppyandhawthorn.co/assets/gallery-2.jpg</image:loc>
+      <image:title>Edible flowers for garnishing charcuterie boards</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://poppyandhawthorn.co/assets/gallery-3.jpg</image:loc>
+      <image:title>Selection of artisan cheeses, meats, and fruits</image:title>
+    </image:image>
+  </url>
+
+  <!-- Section anchors on the single page -->
+  <url>
+    <loc>https://poppyandhawthorn.co/#about</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://poppyandhawthorn.co/#offerings</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://poppyandhawthorn.co/#gallery</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://poppyandhawthorn.co/#contact</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+</urlset>
