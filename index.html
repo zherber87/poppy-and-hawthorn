@@ -13,16 +13,17 @@
 <script src="https://widgets.sociablekit.com/instagram-feed/widget.js" defer></script>
 <style>
   :root {
-    --cream: #f5efe6;
-    --cream-deep: #ece3d3;
-    --cream-soft: #f9f4ec;
+    --white: #ffffff;
+    --cream: #ffffff;           /* main page bg — now white */
+    --cream-deep: #f5efe6;      /* subtle warm sections (offerings, footer) */
+    --cream-soft: #faf6f0;      /* very light warm (testimonial) */
     --ink: #2a2620;
     --ink-soft: #4a4238;
-    --rust: #8a5a3b;       /* tuned to match the logo's warm brown */
+    --rust: #8a5a3b;
     --rust-deep: #6e4228;
     --sage: #7a8470;
     --gold: #b08d57;
-    --line: rgba(42, 38, 32, 0.18);
+    --line: rgba(42, 38, 32, 0.14);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -63,7 +64,7 @@
     justify-content: space-between;
     align-items: center;
     z-index: 100;
-    background: var(--cream);
+    background: var(--white);
     border-bottom: 1px solid transparent;
     transition: border-color 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease;
   }
@@ -71,7 +72,7 @@
   nav.scrolled {
     border-bottom-color: var(--line);
     padding: 12px 48px;
-    box-shadow: 0 4px 20px rgba(42, 38, 32, 0.04);
+    box-shadow: 0 4px 20px rgba(42, 38, 32, 0.05);
   }
 
   .logo-mark {
@@ -88,6 +89,7 @@
     border-radius: 50%;
     overflow: hidden;
     flex-shrink: 0;
+    background: var(--cream-deep);
     transition: transform 0.4s ease, width 0.4s ease, height 0.4s ease;
   }
 
@@ -248,7 +250,7 @@
   .btn-arrow { display: inline-block; transition: transform 0.3s ease; }
   .btn:hover .btn-arrow { transform: translateX(4px); }
 
-  /* Hero composition — features the logo prominently */
+  /* Hero composition — features the charcuterie board with logo badge */
   .hero-visual {
     position: relative;
     height: 620px;
@@ -257,11 +259,13 @@
     justify-content: center;
   }
 
-  .hero-logo-stage {
+  .hero-board {
     position: relative;
-    width: 440px;
-    height: 440px;
+    width: 100%;
+    max-width: 600px;
+    z-index: 1;
     animation: float 8s ease-in-out infinite;
+    filter: drop-shadow(0 30px 50px rgba(42, 38, 32, 0.18));
   }
 
   @keyframes float {
@@ -269,34 +273,40 @@
     50% { transform: translateY(-14px); }
   }
 
-  .hero-logo-stage::before {
-    content: '';
+  /* Small logo badge that sits in the corner */
+  .hero-badge {
     position: absolute;
-    inset: -40px;
-    border: 1px solid var(--line);
+    top: 20px;
+    right: 20px;
+    width: 130px;
+    height: 130px;
     border-radius: 50%;
-    animation: spin 60s linear infinite;
+    overflow: hidden;
+    z-index: 3;
+    box-shadow: 0 12px 30px rgba(42, 38, 32, 0.15);
+    animation: badgeFloat 6s ease-in-out infinite;
   }
 
-  .hero-logo-stage::after {
-    content: '';
-    position: absolute;
-    inset: -70px;
-    border: 1px dashed var(--line);
-    border-radius: 50%;
-    animation: spin 80s linear infinite reverse;
-    opacity: 0.5;
-  }
-
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
-
-  .hero-logo-stage img {
+  .hero-badge img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    filter: drop-shadow(0 20px 40px rgba(138, 90, 59, 0.15));
+    object-fit: cover;
+  }
+
+  @keyframes badgeFloat {
+    0%, 100% { transform: translateY(0) rotate(-3deg); }
+    50% { transform: translateY(-8px) rotate(3deg); }
+  }
+
+  /* Decorative circle behind the board */
+  .hero-visual::before {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(245, 239, 230, 0.8) 0%, rgba(245, 239, 230, 0) 70%);
+    z-index: 0;
   }
 
   .hero-stars {
@@ -304,11 +314,12 @@
     font-family: 'Cormorant Garamond', serif;
     color: var(--rust);
     opacity: 0.5;
+    z-index: 2;
   }
-  .hero-star-1 { top: 10%; left: 10%; font-size: 24px; animation: twinkle 4s ease-in-out infinite; }
-  .hero-star-2 { top: 20%; right: 5%; font-size: 18px; animation: twinkle 4s ease-in-out 1s infinite; }
-  .hero-star-3 { bottom: 15%; left: 5%; font-size: 20px; animation: twinkle 4s ease-in-out 2s infinite; }
-  .hero-star-4 { bottom: 8%; right: 12%; font-size: 16px; animation: twinkle 4s ease-in-out 0.5s infinite; }
+  .hero-star-1 { top: 15%; left: 8%; font-size: 24px; animation: twinkle 4s ease-in-out infinite; }
+  .hero-star-2 { top: 60%; right: 3%; font-size: 18px; animation: twinkle 4s ease-in-out 1s infinite; }
+  .hero-star-3 { bottom: 15%; left: 10%; font-size: 20px; animation: twinkle 4s ease-in-out 2s infinite; }
+  .hero-star-4 { top: 30%; left: 3%; font-size: 16px; animation: twinkle 4s ease-in-out 0.5s infinite; }
 
   @keyframes twinkle {
     0%, 100% { opacity: 0.2; transform: scale(1); }
@@ -404,15 +415,6 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-  }
-
-  .about-visual::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(circle at 30% 30%, rgba(176, 141, 87, 0.1) 0%, transparent 60%),
-      radial-gradient(circle at 70% 70%, rgba(138, 90, 59, 0.08) 0%, transparent 60%);
   }
 
   .about-logo {
@@ -817,8 +819,10 @@
     .hero-text .eyebrow { justify-content: center; }
     .hero-lede { margin-left: auto; margin-right: auto; }
     .btn-group { justify-content: center; }
-    .hero-visual { height: 360px; }
-    .hero-logo-stage { width: 300px; height: 300px; }
+    .hero-visual { height: 400px; }
+    .hero-board { max-width: 380px; }
+    .hero-badge { width: 90px; height: 90px; top: 10px; right: 10px; }
+    .hero-visual::before { width: 340px; height: 340px; }
 
     section { padding: 80px 24px; }
     .about { grid-template-columns: 1fr; gap: 48px; }
@@ -871,7 +875,8 @@
     </div>
   </div>
   <div class="hero-visual reveal">
-    <div class="hero-logo-stage">
+    <img src="assets/hero-board.png" alt="Artisan charcuterie board with salami, olives, rosemary, and bread" class="hero-board" />
+    <div class="hero-badge">
       <img src="assets/logo.jpg" alt="Poppy & Hawthorn Co." />
     </div>
     <span class="hero-stars hero-star-1">✦</span>
