@@ -250,40 +250,50 @@
   .btn-arrow { display: inline-block; transition: transform 0.3s ease; }
   .btn:hover .btn-arrow { transform: translateX(4px); }
 
-  /* Hero composition — features the charcuterie board with logo badge */
+  /* Hero composition */
   .hero-visual {
     position: relative;
-    height: 620px;
+    height: 640px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  .hero-board {
+  .hero-photo {
     position: relative;
     width: 100%;
-    max-width: 600px;
-    z-index: 1;
+    height: 100%;
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--cream-deep);
     animation: float 8s ease-in-out infinite;
-    filter: drop-shadow(0 30px 50px rgba(42, 38, 32, 0.18));
+    box-shadow: 0 30px 60px rgba(42, 38, 32, 0.18);
+  }
+
+  .hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
   @keyframes float {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-14px); }
+    50% { transform: translateY(-10px); }
   }
 
-  /* Small logo badge that sits in the corner */
+  /* Logo badge overlapping the photo */
   .hero-badge {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 130px;
-    height: 130px;
+    bottom: -30px;
+    left: -30px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     overflow: hidden;
     z-index: 3;
-    box-shadow: 0 12px 30px rgba(42, 38, 32, 0.15);
+    box-shadow: 0 12px 30px rgba(42, 38, 32, 0.2);
+    border: 6px solid var(--white);
     animation: badgeFloat 6s ease-in-out infinite;
   }
 
@@ -294,19 +304,8 @@
   }
 
   @keyframes badgeFloat {
-    0%, 100% { transform: translateY(0) rotate(-3deg); }
-    50% { transform: translateY(-8px) rotate(3deg); }
-  }
-
-  /* Decorative circle behind the board */
-  .hero-visual::before {
-    content: '';
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(245, 239, 230, 0.8) 0%, rgba(245, 239, 230, 0) 70%);
-    z-index: 0;
+    0%, 100% { transform: translateY(0) rotate(-4deg); }
+    50% { transform: translateY(-8px) rotate(4deg); }
   }
 
   .hero-stars {
@@ -316,10 +315,9 @@
     opacity: 0.5;
     z-index: 2;
   }
-  .hero-star-1 { top: 15%; left: 8%; font-size: 24px; animation: twinkle 4s ease-in-out infinite; }
-  .hero-star-2 { top: 60%; right: 3%; font-size: 18px; animation: twinkle 4s ease-in-out 1s infinite; }
-  .hero-star-3 { bottom: 15%; left: 10%; font-size: 20px; animation: twinkle 4s ease-in-out 2s infinite; }
-  .hero-star-4 { top: 30%; left: 3%; font-size: 16px; animation: twinkle 4s ease-in-out 0.5s infinite; }
+  .hero-star-1 { top: -15px; right: 10%; font-size: 24px; animation: twinkle 4s ease-in-out infinite; }
+  .hero-star-2 { top: 40%; right: -15px; font-size: 20px; animation: twinkle 4s ease-in-out 1s infinite; }
+  .hero-star-3 { bottom: 20%; left: -15px; font-size: 16px; animation: twinkle 4s ease-in-out 2s infinite; }
 
   @keyframes twinkle {
     0%, 100% { opacity: 0.2; transform: scale(1); }
@@ -417,22 +415,24 @@
     overflow: hidden;
   }
 
-  .about-logo {
-    width: 68%;
-    height: auto;
-    position: relative;
-    z-index: 2;
-    filter: drop-shadow(0 10px 30px rgba(138, 90, 59, 0.15));
+  .about-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
   }
 
   .about-flourish {
     position: absolute;
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
-    color: var(--rust);
-    opacity: 0.6;
+    color: var(--white);
     font-size: 14px;
     letter-spacing: 0.2em;
+    z-index: 2;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
   }
 
   .flourish-top { top: 24px; left: 24px; }
@@ -530,6 +530,54 @@
   .offering-link:hover {
     color: var(--rust);
     border-bottom-color: var(--rust);
+  }
+
+  /* ——— Gallery ——— */
+  .gallery-grid {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 16px;
+  }
+
+  .gallery-item {
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    background: var(--cream-deep);
+    border-radius: 2px;
+    position: relative;
+  }
+
+  .gallery-item.gallery-feature {
+    grid-row: span 2;
+    aspect-ratio: auto;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.8s ease;
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.04);
+  }
+
+  .gallery-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(42, 38, 32, 0.15), transparent 50%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+
+  .gallery-item:hover::after {
+    opacity: 1;
   }
 
   /* ——— Instagram Feed Section ——— */
@@ -819,14 +867,14 @@
     .hero-text .eyebrow { justify-content: center; }
     .hero-lede { margin-left: auto; margin-right: auto; }
     .btn-group { justify-content: center; }
-    .hero-visual { height: 400px; }
-    .hero-board { max-width: 380px; }
-    .hero-badge { width: 90px; height: 90px; top: 10px; right: 10px; }
-    .hero-visual::before { width: 340px; height: 340px; }
+    .hero-visual { height: 420px; }
+    .hero-badge { width: 100px; height: 100px; bottom: -20px; left: -10px; border-width: 4px; }
 
     section { padding: 80px 24px; }
     .about { grid-template-columns: 1fr; gap: 48px; }
     .offerings-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr; gap: 12px; }
+    .gallery-item.gallery-feature { grid-row: auto; }
     .ig-embed-wrap { padding: 0 16px; }
 
     .contact { grid-template-columns: 1fr; gap: 48px; }
@@ -853,6 +901,7 @@
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#offerings">Offerings</a></li>
+    <li><a href="#gallery">Gallery</a></li>
     <li><a href="#instagram">Feed</a></li>
     <li><a href="#contact">Inquire</a></li>
   </ul>
@@ -875,14 +924,15 @@
     </div>
   </div>
   <div class="hero-visual reveal">
-    <img src="assets/hero-board.png" alt="Artisan charcuterie board with salami, olives, rosemary, and bread" class="hero-board" />
+    <div class="hero-photo">
+      <img src="assets/hero.jpg" alt="The Poppy & Hawthorn charcuterie cart set up outdoors with parasol and florals" />
+    </div>
     <div class="hero-badge">
       <img src="assets/logo.jpg" alt="Poppy & Hawthorn Co." />
     </div>
     <span class="hero-stars hero-star-1">✦</span>
     <span class="hero-stars hero-star-2">✦</span>
     <span class="hero-stars hero-star-3">✦</span>
-    <span class="hero-stars hero-star-4">✦</span>
   </div>
 </section>
 
@@ -907,7 +957,7 @@
   <div class="about">
     <div class="about-visual reveal">
       <span class="about-flourish flourish-top">✦ est. 2024</span>
-      <img src="assets/logo.jpg" alt="Poppy & Hawthorn Co. logo" class="about-logo" />
+      <img src="assets/about.jpg" alt="Poppy & Hawthorn charcuterie cart signage" class="about-photo" />
       <span class="about-flourish flourish-bottom">made with love ✦</span>
     </div>
     <div class="about-content reveal">
@@ -960,6 +1010,29 @@
       <h3>The <em>Cart</em></h3>
       <p>Our signature charcuterie cart — an interactive, mobile experience that brings flair to weddings, launches, and private events.</p>
       <a href="#contact" class="offering-link">Inquire →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section id="gallery">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Portfolio</div>
+    <h2>A little taste of<br><em>our craft</em>.</h2>
+    <p class="section-lede">
+      Moments from recent events — the details that make every spread feel like its own occasion.
+    </p>
+  </div>
+
+  <div class="gallery-grid">
+    <div class="gallery-item gallery-feature reveal">
+      <img src="assets/gallery-3.jpg" alt="A curated selection of cheeses, meats, fruits, and olives" />
+    </div>
+    <div class="gallery-item reveal">
+      <img src="assets/gallery-1.jpg" alt="Poppy & Hawthorn business cards at a grazing event" />
+    </div>
+    <div class="gallery-item reveal">
+      <img src="assets/gallery-2.jpg" alt="Edible flowers and herbs arranged for garnishing" />
     </div>
   </div>
 </section>
@@ -1087,6 +1160,7 @@
       <ul>
         <li><a href="#about">Our Story</a></li>
         <li><a href="#offerings">Offerings</a></li>
+        <li><a href="#gallery">Gallery</a></li>
         <li><a href="#instagram">Feed</a></li>
         <li><a href="#contact">Inquire</a></li>
       </ul>
